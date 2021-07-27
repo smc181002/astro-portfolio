@@ -1,0 +1,113 @@
+---
+import AppBar from '../components/AppBar.astro';
+let title = 'My Astro Site';
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/e7aebeadc5.js" crossorigin="anonymous"></script>
+
+    <style lang="sass">
+        .left-bg, .right-bg {
+            position: absolute;
+            width: 150px;
+        }
+
+        .left-bg {
+            left: 0;
+            bottom: 0;
+        }
+
+        .right-bg {
+            right: 0;
+            top: 17%;
+        }
+
+        div.hero {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.hero-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+
+            h1, div.subtext {
+                text-align: center;
+                span {
+                    color: var(--primary-color);
+                }
+            }
+
+            h1 {
+                font-family: 'Poppins';
+                margin: 30px 0;
+                font-size: 42px;
+            }
+        }
+
+        div.button-list {
+            margin-top: 60px;
+            button {
+                padding: 14px 20px;
+                margin: 0 10px;
+                cursor: pointer;
+                font-family: 'IBM Plex Mono', monospace;
+                border: none;
+                border-radius: 5px;
+                i {
+                    margin-right: 8px;
+                }
+            }
+
+            .view-proj {
+                background-color: var(--primary-color);
+                color: var(--background-color);
+            }
+
+            .linkedin, .github {
+                background-color: transparent;
+            }
+
+            .linkedin {
+                color: #287CFA;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div style="position: fixed; width: 100vw" > <AppBar /> </div>
+    <img src="/assets/left.svg" alt="" class="left-bg" />
+    <img src="/assets/right.svg" alt="" class="right-bg" >
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>We let computers do a lot of stuff. Why not use them for automating the <span>Infrastructure</span></h1>
+            <div class="mono subtext">
+                I am <span>Meher Chaitanya.</span> DevOps, Cloud, Web Developer
+            </div>
+
+            <div class="button-list">
+                <button class="view-proj">View Projects</button>
+                <button class="linkedin"><i class="fab fa-linkedin"></i>LinkedIn</button>
+                <button class="github"> <i class="fab fa-github"></i>Github</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+---
+  let headerLinks = [
+    {name: "Blogs", link: "/blogs"},
+    {name: "Projects", link: "/projects"},
+    {name: "About Me", link: "/aboutme"},
+  ]
+---
+<style lang="scss">
+  main, div {
+    display: flex;
+    align-items: center;
+  }
+
+  main {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--font-color);
+    padding: 20px 50px;
+
+    div.left { 
+      flex-grow: 1; 
+      color: var(--primary-color);
+      span { margin-left: 14px; }
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      li { 
+        padding: 0 24px;
+        a {text-decoration: none}
+        a:hover {text-decoration: underline;}
+      }
+      li:last-child { padding-right: 0; }
+    }
+  }
+
+</style>
+
+<main>
+  <div class="left">
+    <img src="/assets/face.jpg" alt="svg" width="35px">
+    <span>@smc181002</span>
+  </div>
+
+  <div class="right">
+    <ul>
+      {headerLinks.map(headerLink => (
+        <li>
+          <a href={headerLink.link}>{headerLink.name}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+</main>
