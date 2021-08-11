@@ -1,13 +1,13 @@
 ---
 import AppBar from '../components/AppBar.astro';
-let title = 'My Astro Site';
+let title = 'Home';
 ---
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/jpg" href="/favicon.jpg">
     <link rel="stylesheet" href="/style/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,21 +15,20 @@ let title = 'My Astro Site';
 
     <script src="https://kit.fontawesome.com/e7aebeadc5.js" crossorigin="anonymous"></script>
 
-    <style lang="sass">
+    <style lang="scss">
         .left-bg, .right-bg {
             position: absolute;
             width: 150px;
         }
 
-        .left-bg {
-            left: 0;
-            bottom: 0;
+        @media only screen and (max-width: 800px){
+            div.hero-content { width: 80%; }
+            .left-bg, .right-bg { display: none; }
         }
 
-        .right-bg {
-            right: 0;
-            top: 17%;
-        }
+        .left-bg { left: 0; bottom: 0; }
+
+        .right-bg { right: 0; top: 17%; }
 
         div.hero {
             display: flex;
@@ -44,48 +43,64 @@ let title = 'My Astro Site';
             align-items: center;
             flex-direction: column;
             width: 50%;
+            position: relative;
+            transform: translateY(22px);
 
             h1, div.subtext {
                 text-align: center;
-                span {
-                    color: var(--primary-color);
-                }
+                span { color: var(--primary-color); }
+            }
+
+            div.subtext {
+                font-size: clamp(14px, 3rem, 1.2vw) !important;
             }
 
             h1 {
                 font-family: 'Poppins';
                 margin: 30px 0;
-                font-size: 42px;
+                font-size: clamp(28px, 16rem, 3.2vw) !important;
             }
         }
 
         div.button-list {
             margin-top: 60px;
-            button {
-                padding: 14px 20px;
-                margin: 0 10px;
+            display: flex;
+            align-items: center;
+            
+            div {
+                margin: 0 1.5rem;
                 cursor: pointer;
                 font-family: 'IBM Plex Mono', monospace;
                 border: none;
                 border-radius: 5px;
-                i {
-                    margin-right: 8px;
-                }
+                font-size: clamp(12px, 0.9rem, 30vw) !important;
+
+                i { margin-right: 8px; }
+                a { text-decoration: none; }
             }
 
-            .view-proj {
+            div.view-proj {
                 background-color: var(--primary-color);
                 color: var(--background-color);
+                display: flex;
+
+                a { padding: 14px 20px; }
             }
 
-            .linkedin, .github {
-                background-color: transparent;
-            }
+            .linkedin, .github { background-color: transparent; }
+            .linkedin { color: #287CFA; }
+        }
 
-            .linkedin {
-                color: #287CFA;
+        @media only screen and (max-width: 900px){
+            div.button-list {
+                flex-direction: column;
+                margin-top: 30px;
+                div { margin: 0.5rem 0; }
             }
+        }
 
+        @media only screen and (max-width: 600px) {
+            div.hero-content { width: 90%; }
         }
     </style>
 </head>
@@ -102,9 +117,9 @@ let title = 'My Astro Site';
             </div>
 
             <div class="button-list">
-                <button class="view-proj">View Projects</button>
-                <button class="linkedin"><i class="fab fa-linkedin"></i>LinkedIn</button>
-                <button class="github"> <i class="fab fa-github"></i>Github</button>
+                <div class="view-proj"><a href="./projects"> View Projects</a></div>
+                <div class="linkedin"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/meher-chaitanya-341567193">LinkedIn</a></div>
+                <div class="github"> <i class="fab fa-github"></i><a href="https://github.com/smc181002">Github</a></div>
             </div>
         </div>
     </div>

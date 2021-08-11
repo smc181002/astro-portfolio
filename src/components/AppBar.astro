@@ -19,7 +19,10 @@
     div.left { 
       flex-grow: 1; 
       color: var(--primary-color);
-      span { margin-left: 14px; }
+      a { 
+        margin-left: 14px; 
+        text-decoration: none;
+      }
     }
 
     ul {
@@ -33,13 +36,32 @@
       li:last-child { padding-right: 0; }
     }
   }
+  @media only screen and (max-width: 680px) {
+    main, ul{
+      display: block;
+    }
 
+
+    main {
+      padding: 20px 20px;
+      div.left {
+        text-decoration: underline;
+      }
+
+      ul {
+        padding: 0;
+        padding-top: 15px;
+        li{ padding-left: 0; text-decoration: underline;}
+      }
+    }
+    
+  }
 </style>
 
 <main>
   <div class="left">
     <img src="/assets/face.jpg" alt="svg" width="35px">
-    <span>@smc181002</span>
+    <a href="/">@smc181002</a>
   </div>
 
   <div class="right">
