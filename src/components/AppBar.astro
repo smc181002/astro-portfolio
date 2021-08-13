@@ -2,8 +2,10 @@
   let headerLinks = [
     {name: "Blogs", link: "/blogs"},
     {name: "Projects", link: "/projects"},
-    {name: "About Me", link: "/aboutme"},
+    {name: "About Me", link: "/about-me"},
   ]
+
+  let {active} = Astro.props;
 ---
 <style lang="scss">
   main, div {
@@ -13,6 +15,7 @@
 
   main {
     font-family: 'IBM Plex Mono', monospace;
+    background-color: #fbfcfd;
     color: var(--font-color);
     padding: 20px 50px;
 
@@ -22,6 +25,7 @@
       a { 
         margin-left: 14px; 
         text-decoration: none;
+        &:hover { text-decoration: underline; }
       }
     }
 
@@ -41,7 +45,6 @@
       display: block;
     }
 
-
     main {
       padding: 20px 20px;
       div.left {
@@ -56,6 +59,11 @@
     }
     
   }
+
+  a.active {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
 </style>
 
 <main>
@@ -67,9 +75,15 @@
   <div class="right">
     <ul>
       {headerLinks.map(headerLink => (
-        <li>
-          <a href={headerLink.link}>{headerLink.name}</a>
-        </li>
+        (headerLink.name === active) ? (
+          <li>
+            <a class="active" href={headerLink.link}>{headerLink.name}</a>
+          </li>
+        ) : (
+          <li>
+            <a href={headerLink.link}>{headerLink.name}</a>
+          </li>
+        )
       ))}
     </ul>
   </div>

@@ -20,4 +20,13 @@ First, We need to create the data nodes and the name nodes for the HDFS cluster.
 ```js
 const variable = "value";
 ```
+```js
+const variable = "value";
+```
+```js
+const variable = "value";
+```
+```js
+const variable = "value";
+```
 </div>
