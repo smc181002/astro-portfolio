@@ -8,6 +8,7 @@
   /* font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem); */
   /* --user-font-scale: 1rem - 16px; */
   --font-color: #3a4957;
+  --font-color-light: #3a4957ce;
   --background-color: #fff;
   --primary-color: #5855FE;
   --secondary-color: #54BA7D;
@@ -20,4 +21,74 @@ a {
 
 .mono {
   font-family: 'IBM Plex Mono', momospace;
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins';
+  font-weight: 600;
+}
+
+a > code:not([class*='language']) {
+  position: relative;
+  color: var(--theme-text-accent);
+  background: transparent;
+  text-underline-offset: var(--padding-block);
+}
+
+a > code:not([class*='language'])::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: var(--theme-accent);
+  opacity: var(--theme-accent-opacity);
+  border-radius: var(--border-radius);
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 0.25em;
+}
+
+strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Supporting Content */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+code:not([class*='language']) {
+  --border-radius: 3px;
+  --padding-block: 0.2rem;
+  --padding-inline: 0.4rem;
+  color: var(--theme-code-inline-text);
+  background-color: var(--theme-code-inline-bg);
+  padding: var(--padding-block) var(--padding-inline);
+  margin: calc(var(--padding-block) * -1) -0.125em;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+pre > code:not([class*='language']) {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  color: inherit;
+}
+
+pre > code {
+  font-size: 1em;
 }

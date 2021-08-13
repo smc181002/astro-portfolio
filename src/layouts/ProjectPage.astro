@@ -1,0 +1,153 @@
+---
+import AppBar from '../components/AppBar.astro';
+
+import {projectList, blob} from "../pages/projects/projects.js";
+
+const size = "40px";
+let {content} = Astro.props;
+// filter function will give a list and we need to destructure the array to get our value which is unique so no problem
+let [{title, writer, tech, contributors}] = projectList.filter(item => item.title == content.title)
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects</title>
+  <link rel="icon" type="image/jpg" href="/favicon.jpg">
+  <link rel="stylesheet" href="/style/global.css">
+  <link rel="stylesheet" href="/style/code.css">
+  <link rel="stylesheet" href="/style/project-page.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- <script src="https://kit.fontawesome.com/e7aebeadc5.js" crossorigin="anonymous"></script> -->
+
+  <style lang="scss">
+    body { background-color: #fbfcfd; }
+
+    .left-bg, .right-bg {
+      position: fixed;
+      width: 40px;
+    }
+
+    .right-bg { right: 0; bottom: 0; z-index: -69}
+      
+    .left-bg { left: 0; top: 0; z-index: -420}
+
+    div.hero { display: flex; }
+
+    div.hero-content {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-top: 80px;
+      padding: 50px;
+    }
+
+    p {font-family: "IBM Plex Mono", monospace;}
+
+    @media only screen and (max-width: 600px) {
+      div.hero-content { width: 90%; }
+      .left-bg, .right-bg { display: none; }
+    }
+
+    @media only screen and (max-width: 800px){
+      div.hero-content { width: 80%; }
+    }
+
+
+    h1.title {
+      font-size: 52px;
+    }
+
+    div.credits {
+      margin-bottom: 8px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    div.contributors, div.writer{
+      display: flex;
+      align-items: center;
+      margin-right: 18px;
+      img {
+        margin-right: 10px;
+        border: 3px dashed var(--secondary-color);
+        border-radius: 50%;
+      }
+      div {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    div.header {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+  </style>
+</head>
+<body>
+  <div style="position: fixed; width: 100vw" > <AppBar /> </div>
+  <img 
+    src="/assets/design-left.svg" 
+    alt="left" 
+    class="left-bg" 
+  />
+  <img 
+    src="/assets/design-right.svg" 
+    alt="right" 
+    class="right-bg" 
+  />
+
+  <!-- <AppBar /> -->
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="header">
+        <h1 class="title">{title}</h1>
+        <div class="credits">
+
+          <div class="writer">
+            <a href={"https://github.com/" + writer.github } target="_blank">
+              <img 
+                src={writer.img} 
+                alt={writer.github} 
+                width={size} 
+                height={size} 
+                title={writer.github}
+              />
+            </a>
+            <div><code>Writer</code></div>
+          </div>
+
+          <div class="contributors"> 
+            {contributors.map(contributor => (
+              <div>
+              <a href={"https://github.com/" + contributor.github } target="_blank">
+                <img src={contributor.img} 
+                  alt={contributor.github} 
+                  width={size} 
+                  height={size} 
+                  title={contributor.github}
+                />
+              </a>
+              </div>
+            ))}
+            <div> <code>Contributors</code> </div>
+          </div>
+        </div>
+
+      </div>
+      <slot></slot>
+    </div>
+  </div>
+</body>
+</html>

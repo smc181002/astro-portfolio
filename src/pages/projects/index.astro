@@ -1,0 +1,100 @@
+---
+import AppBar from '../../components/AppBar.astro';
+import ImageCard from '../../components/ImageCard.astro';
+
+import {projectList, blob} from "./projects.js";
+
+const size = "50px";
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects</title>
+  <link rel="icon" type="image/jpg" href="/favicon.jpg">
+  <link rel="stylesheet" href="/style/global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/e7aebeadc5.js" crossorigin="anonymous"></script>
+
+  <style lang="scss">
+    body {
+      background-color: #fbfcfd;
+    }
+
+    .left-bg, .right-bg {
+      position: fixed;
+      width: 70px;
+    }
+
+    .left-bg { left: 0; bottom: 0; }
+    .right-bg { right: 0; top: 17%; }
+
+    div.hero {
+      display: flex;
+    }
+
+    div.hero-content {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-top: 80px;
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 38px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      div.hero-content { width: 90%; }
+    }
+
+    @media only screen and (max-width: 800px){
+      div.hero-content { width: 80%; }
+      .left-bg, .right-bg { display: none; }
+    }
+    
+    .project-list {
+      width: 100%;
+      display: flex;
+      div {
+        margin-right: 40px;
+        width: 400px;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="position: fixed; width: 100vw" > <AppBar /> </div>
+  <!-- <img src="/assets/left_green.svg" alt="" class="left-bg" />
+  <img src="/assets/right_green.svg" alt="" class="right-bg" > -->
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Check out the Research and Projects</h1>
+
+      <div class="project-list">
+        {projectList.map(({title, tech, writer, contributors} ) => (
+          <div>
+          <a href={"/projects/list/" + blob(title)}>
+          <ImageCard 
+            title={title} 
+            tech={tech} 
+            writer={writer} 
+            contributors={contributors}
+          />
+          </a>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="my-info"></div>
+  </div>
+</body>
+</html>
