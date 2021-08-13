@@ -5,6 +5,7 @@ import {projectList, blob} from "../pages/projects/projects.js";
 
 const size = "40px";
 let {content} = Astro.props;
+const domain = "https://smc181002.github.io";
 // filter function will give a list and we need to destructure the array to get our value which is unique so no problem
 let [{title, writer, tech, contributors}] = projectList.filter(item => item.title == content.title)
 
@@ -25,18 +26,18 @@ let [{title, writer, tech, contributors}] = projectList.filter(item => item.titl
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://smc181002.github.com/" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={writer.name + " - " + title} />
-    <meta property="og:image" content={"/assets/" + blob(title) + ".png"} />
+    <meta property="og:description" content={writer.github + " - " + title} />
+    <meta property="og:image" content={"/assets/metaimgs/" + blob(title) + ".png"} />
     <meta property="og:image:alt" content="Image description for accessibility" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://smc181002.github.com/" />
     <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={writer.name + " - " + title} />
+    <meta property="twitter:description" content={writer.github + " - " + title} />
     <meta
         property="twitter:image"
-        content={"/assets/" + blob(title) + ".png"}
+        content={"/assets/metaimgs/" + blob(title) + ".png"}
     />
     <meta
         property="twitter:image:alt"
