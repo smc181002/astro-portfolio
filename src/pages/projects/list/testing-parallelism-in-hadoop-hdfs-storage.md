@@ -24,9 +24,11 @@ const variable = "value";
 const variable = "value";
 ```
 ```js
-const variable = "value";
+value = test;
+const variable = `${value}`;
 ```
-```js
-const variable = "value";
+```py
+second = 3
+variable = f"value {second}";
 ```
 </div>
